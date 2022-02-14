@@ -1,0 +1,1 @@
+CREATE TYPE team_type AS ENUM ('ENGINEERING', 'SALES');

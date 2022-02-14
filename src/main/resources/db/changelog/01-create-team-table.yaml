@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-team-table
+      author: Shivam
+      comment: Create team table
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: sql/create_enum_team_type.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+        - createTable:
+            tableName: team
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: team_pk
+                    autoIncrement: true
+                  name: id
+                  type: BIGSERIAL
+              - column:
+                  name: name
+                  type: varchar(250)
+              - column:
+                  name: type
+                  type: team_type
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: timestamptz
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_by
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_by
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: timestamptz
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValue: FALSE

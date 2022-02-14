@@ -13,5 +13,4 @@ public class ApplicationController {
         return new ResponseEntity<>("Welcome to Employee service. You can access swagger at--", HttpStatus.OK);
     }
 
-
 }

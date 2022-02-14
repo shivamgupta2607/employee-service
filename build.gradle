@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,6 +30,9 @@ dependencies {
     implementation "org.mockito:mockito-core:3.0.0"
     testImplementation "org.testng:testng:6.9.10"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+    implementation "org.springdoc:springdoc-openapi-ui:${springdocVersion}"
+    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
 }
 
 test {

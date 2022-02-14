@@ -30,3 +30,9 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  liquibase: #liquibase changelog properties
+    enabled: true
+    change-log: classpath:db/db-changelog-master.yaml
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant-path-matcher
