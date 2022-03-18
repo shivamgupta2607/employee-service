@@ -1,8 +1,8 @@
 package com.shivam.employee.controller;
 
 import com.shivam.employee.constants.ApiConstants;
-import com.shivam.employee.dto.EmployeeRequest;
-import com.shivam.employee.dto.EmployeeResponse;
+import com.shivam.employee.dto.request.EmployeeRequest;
+import com.shivam.employee.dto.response.EmployeeResponse;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.service.EmployeeService;
 import lombok.extern.log4j.Log4j2;

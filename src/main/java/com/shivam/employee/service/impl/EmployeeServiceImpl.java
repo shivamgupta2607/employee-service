@@ -2,8 +2,9 @@ package com.shivam.employee.service.impl;
 
 import com.shivam.employee.advice.Loggable;
 import com.shivam.employee.constants.EntityConstants;
-import com.shivam.employee.dto.EmployeeRequest;
-import com.shivam.employee.dto.EmployeeResponse;
+import com.shivam.employee.dto.request.EmployeeRequest;
+import com.shivam.employee.dto.request.UserRequest;
+import com.shivam.employee.dto.response.EmployeeResponse;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.filter.SearchCriteria;
 import com.shivam.employee.dto.filter.SearchOperation;
@@ -15,6 +16,7 @@ import com.shivam.employee.repository.EmployeeRepository;
 import com.shivam.employee.repository.TeamRepository;
 import com.shivam.employee.repository.specification.builder.EmployeeSpecificationsBuilder;
 import com.shivam.employee.service.EmployeeService;
+import com.shivam.employee.service.ExternalAPIService;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private ExternalAPIService externalAPIService;
 
     private final static EmployeeMapper employeeMapper = EmployeeMapper.INSTANCE;
 
@@ -107,6 +112,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employee.setTeam(optionalTeam.get());
         this.employeeRepository.save(employee);
+        final UserRequest userRequest = new UserRequest();
+        userRequest.setName(employee.getName());
+        userRequest.setJob(employee.getDesignation().toString());
+        this.externalAPIService.createUserFromExternalAPI(userRequest);
         return employeeMapper.INSTANCE.mapToEmployeeResponse(employee);
     }
 

@@ -1,4 +1,4 @@
-package com.shivam.employee.dto;
+package com.shivam.employee.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

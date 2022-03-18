@@ -1,7 +1,8 @@
-package com.shivam.employee.dto;
+package com.shivam.employee.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.shivam.employee.dto.request.TeamRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = true)
-public class EmployeeResponse extends EmployeeRequest {
+public class TeamResponse extends TeamRequest {
 
     private Long id;
 

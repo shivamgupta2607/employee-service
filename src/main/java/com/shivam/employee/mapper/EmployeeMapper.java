@@ -1,10 +1,10 @@
 package com.shivam.employee.mapper;
 
 import com.shivam.employee.constants.AppConstants;
-import com.shivam.employee.dto.EmployeeRequest;
-import com.shivam.employee.dto.EmployeeResponse;
-import com.shivam.employee.dto.TeamRequest;
-import com.shivam.employee.dto.TeamResponse;
+import com.shivam.employee.dto.request.EmployeeRequest;
+import com.shivam.employee.dto.response.EmployeeResponse;
+import com.shivam.employee.dto.request.TeamRequest;
+import com.shivam.employee.dto.response.TeamResponse;
 import com.shivam.employee.entity.Employee;
 import com.shivam.employee.entity.Team;
 import org.mapstruct.Mapper;

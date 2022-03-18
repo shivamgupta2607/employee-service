@@ -2,8 +2,8 @@ package com.shivam.employee.service.impl;
 
 import com.shivam.employee.advice.Loggable;
 import com.shivam.employee.constants.EntityConstants;
-import com.shivam.employee.dto.TeamRequest;
-import com.shivam.employee.dto.TeamResponse;
+import com.shivam.employee.dto.request.TeamRequest;
+import com.shivam.employee.dto.response.TeamResponse;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.filter.SearchCriteria;
 import com.shivam.employee.dto.filter.SearchOperation;

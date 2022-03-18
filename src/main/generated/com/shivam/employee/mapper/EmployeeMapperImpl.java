@@ -1,9 +1,9 @@
 package com.shivam.employee.mapper;
 
-import com.shivam.employee.dto.EmployeeRequest;
-import com.shivam.employee.dto.EmployeeResponse;
-import com.shivam.employee.dto.TeamRequest;
-import com.shivam.employee.dto.TeamResponse;
+import com.shivam.employee.dto.request.EmployeeRequest;
+import com.shivam.employee.dto.request.TeamRequest;
+import com.shivam.employee.dto.response.EmployeeResponse;
+import com.shivam.employee.dto.response.TeamResponse;
 import com.shivam.employee.entity.Employee;
 import com.shivam.employee.entity.Team;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-03-15T17:07:10+0800",
+    date = "2022-03-18T16:16:11+0800",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_322 (Amazon.com Inc.)"
 )
 public class EmployeeMapperImpl implements EmployeeMapper {
