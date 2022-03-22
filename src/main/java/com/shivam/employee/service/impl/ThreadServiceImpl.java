@@ -26,7 +26,7 @@ public class ThreadServiceImpl implements ThreadService {
     public void testCompletionService() {
 
         ExecutorService taskExecutor = Executors.newFixedThreadPool(10);
-        CompletionService<String> taskCompletionService = new ExecutorCompletionService<String>(taskExecutor);
+        CompletionService<String> taskCompletionService = new ExecutorCompletionService<>(taskExecutor);
 
 
         int submittedTasks = 2;

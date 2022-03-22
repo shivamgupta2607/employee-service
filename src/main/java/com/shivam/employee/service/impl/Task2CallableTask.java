@@ -1,13 +1,11 @@
 package com.shivam.employee.service.impl;
 
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Callable;
 
 @Log4j2
-public class Task2CallableTask implements Callable {
+public class Task2CallableTask implements Callable<String> {
 
     String code;
     private Task2Service task2Service;
