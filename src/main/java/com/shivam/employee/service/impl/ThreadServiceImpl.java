@@ -5,6 +5,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
@@ -24,28 +27,28 @@ public class ThreadServiceImpl implements ThreadService {
 
     @Override
     public void testCompletionService() {
-
-        ExecutorService taskExecutor = Executors.newFixedThreadPool(10);
+        List<Callable> tasks = Arrays.asList(
+                new Task1CallableTask("AI", task1Service),
+                new Task2CallableTask("AI", task2Service)
+        );
+        ExecutorService taskExecutor = Executors.newFixedThreadPool(tasks.size());
         CompletionService<String> taskCompletionService = new ExecutorCompletionService<>(taskExecutor);
-
-
-        int submittedTasks = 2;
         taskCompletionService.submit(new Task1CallableTask("AI", task1Service));
         taskCompletionService.submit(new Task2CallableTask("AI", task2Service));
-        for (int tasksHandled = 0; tasksHandled < submittedTasks; tasksHandled++) {
+        for (int tasksHandled = 0; tasksHandled < tasks.size(); tasksHandled++) {
             try {
-                System.out.println("trying to take from Completion service");
+                log.info("trying to take from Completion service");
                 Future<String> result = taskCompletionService.take();
-                System.out.println("result for a task availble in queue.Trying to get()");
+                log.info("result for a task availble in queue.Trying to get()");
                 String l = result.get();
-                System.out.println("Task " + String.valueOf(tasksHandled) + "Completed - results obtained : " + l);
+                log.info("Task {} Completed - results obtained : {}", tasksHandled, l);
 
             } catch (InterruptedException e) {
-                System.out.println("Error Interrupted exception");
+                log.info("Error Interrupted exception");
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
-                System.out.println("Error get() threw exception");
+                log.info("Error get() threw exception");
             }
 
         }
