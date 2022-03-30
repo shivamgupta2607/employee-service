@@ -7,10 +7,10 @@ import java.util.concurrent.Callable;
 @Log4j2
 public class Task1CallableTask implements Callable<String> {
 
-    String code;
-    private Task1Service task1Service;
+    private final String code;
+    private final Task1Service task1Service;
 
-    Task1CallableTask(String code, Task1Service task1Service) {
+    Task1CallableTask(final String code, final Task1Service task1Service) {
         this.code = code;
         this.task1Service = task1Service;
     }

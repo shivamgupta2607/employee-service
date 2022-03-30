@@ -33,13 +33,16 @@ public class ThreadServiceImpl implements ThreadService {
         );
         ExecutorService taskExecutor = Executors.newFixedThreadPool(tasks.size());
         CompletionService<String> taskCompletionService = new ExecutorCompletionService<>(taskExecutor);
-        taskCompletionService.submit(new Task1CallableTask("AI", task1Service));
-        taskCompletionService.submit(new Task2CallableTask("AI", task2Service));
+
+        tasks.forEach(task->{
+            taskCompletionService.submit(task);
+        });
+
         for (int tasksHandled = 0; tasksHandled < tasks.size(); tasksHandled++) {
             try {
                 log.info("trying to take from Completion service");
                 Future<String> result = taskCompletionService.take();
-                log.info("result for a task availble in queue.Trying to get()");
+                log.info("result for a task available in queue.Trying to get()");
                 String l = result.get();
                 log.info("Task {} Completed - results obtained : {}", tasksHandled, l);
 
@@ -52,6 +55,7 @@ public class ThreadServiceImpl implements ThreadService {
             }
 
         }
+        log.info("It should execute last");
     }
 }
 
