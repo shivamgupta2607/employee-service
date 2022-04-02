@@ -86,7 +86,7 @@ public class EmployeeServiceImplTest {
 
         Mockito.when(teamRepository.findByIdAndDeletedFalse(any())).thenReturn(Optional.of(team));
         Mockito.when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
-        Mockito.when(externalAPIService.createUserFromExternalAPI(Mockito.any())).thenReturn(userResponseString);
+        Mockito.when(externalAPIService.getTeamFromExternalAPI(Mockito.any())).thenReturn(userResponseString);
 
         EmployeeRequest employeeRequest = new EmployeeRequest();
         employeeRequest.setName("A");

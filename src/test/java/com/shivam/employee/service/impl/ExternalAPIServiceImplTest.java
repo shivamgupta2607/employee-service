@@ -40,8 +40,7 @@ public class ExternalAPIServiceImplTest {
         Mockito.when(restTemplate.exchange
                 (ArgumentMatchers.anyString(), ArgumentMatchers.any(HttpMethod.class),
                         ArgumentMatchers.any(), ArgumentMatchers.<Class<UserResponse>>any())).thenReturn(responseEntity);
-        UserResponse userFromExternalAPI = externalAPIService.createUserFromExternalAPI(userRequest);
+        String userFromExternalAPI = externalAPIService.getTeamFromExternalAPI(userRequest);
         Assert.assertNotNull(userFromExternalAPI);
-        Assert.assertNotNull(userFromExternalAPI.getId());
     }
 }

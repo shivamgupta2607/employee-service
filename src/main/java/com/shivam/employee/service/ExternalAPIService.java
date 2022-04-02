@@ -4,5 +4,5 @@ import com.shivam.employee.dto.request.UserRequest;
 
 public interface ExternalAPIService {
 
-    String createUserFromExternalAPI(final UserRequest userRequest);
+    String getTeamFromExternalAPI(final UserRequest userRequest);
 }

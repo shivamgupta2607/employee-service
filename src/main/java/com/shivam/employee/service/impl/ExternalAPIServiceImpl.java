@@ -22,7 +22,7 @@ public class ExternalAPIServiceImpl implements ExternalAPIService {
     private RestTemplate restTemplate = new RestTemplateBuilder().setConnectTimeout(Duration.ofMillis(100)).setReadTimeout(Duration.ofMillis(4 * 1000)).build();
 
     @Override
-    public String createUserFromExternalAPI(final UserRequest userRequest) {
+    public String getTeamFromExternalAPI(final UserRequest userRequest) {
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity httpEntity = new HttpEntity(userRequest, httpHeaders);
 
@@ -32,7 +32,7 @@ public class ExternalAPIServiceImpl implements ExternalAPIService {
             log.info("Response is {}", body);
             return body;
         } catch (final HttpStatusCodeException e) {
-            throw new ServiceException(String.format("Error while creating user, response body is ", e.getResponseBodyAsString()), e.getStatusCode());
+            throw new ServiceException(String.format("Error while getting team, response body is ", e.getResponseBodyAsString()), e.getStatusCode());
         }
     }
 }

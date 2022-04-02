@@ -115,7 +115,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         final UserRequest userRequest = new UserRequest();
         userRequest.setName(employee.getName());
         userRequest.setJob(employee.getDesignation().toString());
-        this.externalAPIService.createUserFromExternalAPI(userRequest);
+        this.externalAPIService.getTeamFromExternalAPI(userRequest);
         return employeeMapper.INSTANCE.mapToEmployeeResponse(employee);
     }
 
