@@ -2,12 +2,12 @@ package com.shivam.employee.service.impl;
 
 import com.shivam.employee.advice.Loggable;
 import com.shivam.employee.constants.EntityConstants;
-import com.shivam.employee.dto.request.EmployeeRequest;
-import com.shivam.employee.dto.request.UserRequest;
-import com.shivam.employee.dto.response.EmployeeResponse;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.filter.SearchCriteria;
 import com.shivam.employee.dto.filter.SearchOperation;
+import com.shivam.employee.dto.request.EmployeeRequest;
+import com.shivam.employee.dto.request.UserRequest;
+import com.shivam.employee.dto.response.EmployeeResponse;
 import com.shivam.employee.entity.Employee;
 import com.shivam.employee.entity.Team;
 import com.shivam.employee.exception.RecordNotFoundException;
@@ -92,7 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         final Optional<Employee> employeeOptional = this.employeeRepository
                 .findByIdAndDeletedFalse(id);
         if (!employeeOptional.isPresent()) {
-            throw new RuntimeException("");
+            throw new RecordNotFoundException(String.format("Employee by id %s not found", id));
         }
         final Employee employee = employeeOptional.get();
         final EmployeeResponse employeeResponse = employeeMapper.mapToEmployeeResponse(employee);

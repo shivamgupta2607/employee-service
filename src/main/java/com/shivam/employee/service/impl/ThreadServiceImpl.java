@@ -34,7 +34,7 @@ public class ThreadServiceImpl implements ThreadService {
         ExecutorService taskExecutor = Executors.newFixedThreadPool(tasks.size());
         CompletionService<String> taskCompletionService = new ExecutorCompletionService<>(taskExecutor);
 
-        tasks.forEach(task->{
+        tasks.forEach(task -> {
             taskCompletionService.submit(task);
         });
 

@@ -82,10 +82,11 @@ public class EmployeeServiceImplTest {
         userResponse.setName("A");
         userResponse.setJob("Job1");
         userResponse.setCreatedAt("2020-10-05");
+        String userResponseString = userResponse.toString();
 
         Mockito.when(teamRepository.findByIdAndDeletedFalse(any())).thenReturn(Optional.of(team));
         Mockito.when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
-        Mockito.when(externalAPIService.createUserFromExternalAPI(Mockito.any())).thenReturn(userResponse);
+        Mockito.when(externalAPIService.createUserFromExternalAPI(Mockito.any())).thenReturn(userResponseString);
 
         EmployeeRequest employeeRequest = new EmployeeRequest();
         employeeRequest.setName("A");

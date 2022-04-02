@@ -2,11 +2,11 @@ package com.shivam.employee.service.impl;
 
 import com.shivam.employee.advice.Loggable;
 import com.shivam.employee.constants.EntityConstants;
-import com.shivam.employee.dto.request.TeamRequest;
-import com.shivam.employee.dto.response.TeamResponse;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.filter.SearchCriteria;
 import com.shivam.employee.dto.filter.SearchOperation;
+import com.shivam.employee.dto.request.TeamRequest;
+import com.shivam.employee.dto.response.TeamResponse;
 import com.shivam.employee.entity.Team;
 import com.shivam.employee.exception.RecordNotFoundException;
 import com.shivam.employee.mapper.EmployeeMapper;
@@ -86,6 +86,11 @@ public class TeamServiceImpl implements TeamService {
                 .findByIdAndDeletedFalse(id);
         if (!teamOptional.isPresent()) {
             throw new RecordNotFoundException(String.format("Team with Id %s not found", id));
+        }
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         final Team team = teamOptional.get();
         final TeamResponse teamResponse = employeeMapper.mapToTeamResponse(team);

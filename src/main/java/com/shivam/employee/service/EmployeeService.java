@@ -1,8 +1,8 @@
 package com.shivam.employee.service;
 
+import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.request.EmployeeRequest;
 import com.shivam.employee.dto.response.EmployeeResponse;
-import com.shivam.employee.dto.filter.FilterCriteria;
 import org.springframework.data.domain.Page;
 
 public interface EmployeeService {
