@@ -1,5 +1,6 @@
 package com.shivam.employee.controller;
 
+import com.shivam.employee.advice.Loggable;
 import com.shivam.employee.constants.ApiConstants;
 import com.shivam.employee.dto.filter.FilterCriteria;
 import com.shivam.employee.dto.request.EmployeeRequest;
@@ -30,6 +31,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping
+    @Loggable
     public ResponseEntity<EmployeeResponse> createEmployee(@RequestBody @Valid final EmployeeRequest employeeRequest) {
         log.debug("Incoming request to create a new employee with name {}", employeeRequest.getName());
         EmployeeResponse employeeResponse = this.employeeService.create(employeeRequest);

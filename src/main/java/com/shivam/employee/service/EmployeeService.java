@@ -12,4 +12,8 @@ public interface EmployeeService {
     EmployeeResponse getById(final Long id);
 
     EmployeeResponse create(final EmployeeRequest EmployeeRequest);
+
+    EmployeeResponse createNew(final EmployeeRequest employeeRequest);
+
+    void dummyTestMethod();
 }

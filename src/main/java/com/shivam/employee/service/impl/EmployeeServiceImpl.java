@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @Log4j2
@@ -67,6 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     .add(new SearchCriteria(EntityConstants.JOINING_DATE, SearchOperation.LESS_THAN_OR_EQUAL_TO,
                             filterCriteria.getToDate()));
         }
+        
         final EmployeeSpecificationsBuilder builder = new EmployeeSpecificationsBuilder(
                 filterCriteria.getFullTextSearch(), params);
         final Specification<Employee> specification = builder.build();
@@ -115,8 +117,51 @@ public class EmployeeServiceImpl implements EmployeeService {
         final UserRequest userRequest = new UserRequest();
         userRequest.setName(employee.getName());
         userRequest.setJob(employee.getDesignation().toString());
+        CompletableFuture.runAsync(()->this.createNew(employeeRequest));
         this.externalAPIService.getTeamFromExternalAPI(userRequest);
         return employeeMapper.INSTANCE.mapToEmployeeResponse(employee);
+    }
+
+    @Override
+    @Loggable
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public EmployeeResponse createNew(final EmployeeRequest employeeRequest) {
+        final Employee employee = employeeMapper.mapToEmployeeCreate(employeeRequest);
+        log.debug("Employee is :  {} ", employee);
+        //log.debug(1/0);
+        employee.setCode(String.format("EMPNEW-%s", getRandomString()));
+        Optional<Team> optionalTeam = this.teamRepository.findByIdAndDeletedFalse(employeeRequest.getTeamId());
+        if (!optionalTeam.isPresent()) {
+            throw new RecordNotFoundException(String.format("Team with Id %s is not present", employeeRequest.getTeamId()));
+        }
+        employee.setTeam(optionalTeam.get());
+        this.employeeRepository.save(employee);
+        final UserRequest userRequest = new UserRequest();
+        userRequest.setName(employee.getName());
+        userRequest.setJob(employee.getDesignation().toString());
+        this.externalAPIService.getTeamFromExternalAPI(userRequest);
+        return employeeMapper.INSTANCE.mapToEmployeeResponse(employee);
+    }
+
+    @Override
+    @Loggable
+    public void dummyTestMethod() {
+        log.info("Inside dummy Method");
+        CompletableFuture.runAsync(this::callTimeTakingMethod);
+        log.info("exiting dummyTestMethod");
+
+    }
+
+    @Loggable
+    private void callTimeTakingMethod() {
+        log.info("Inside callTimeTakingMethod");
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("exiting callTimeTakingMethod");
+
     }
 
     private String getRandomString() {
