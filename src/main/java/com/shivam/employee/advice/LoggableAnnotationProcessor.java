@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -16,7 +17,7 @@ import java.lang.reflect.Method;
 public class LoggableAnnotationProcessor {
 
     @Around("@annotation(com.shivam.employee.advice.Loggable)")
-    public Object evaluate(final ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object evaluate(final @NotNull ProceedingJoinPoint joinPoint) throws Throwable {
         final MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         final Method method = signature.getMethod();
         final StopWatch stopWatch = new StopWatch();

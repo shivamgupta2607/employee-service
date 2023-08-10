@@ -1,5 +1,8 @@
 package com.shivam.employee.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shivam.employee.dto.request.EmployeeRequest;
 import com.shivam.employee.dto.request.UserRequest;
 import com.shivam.employee.dto.response.EmployeeResponse;
@@ -10,6 +13,9 @@ import com.shivam.employee.enums.Designation;
 import com.shivam.employee.repository.EmployeeRepository;
 import com.shivam.employee.repository.TeamRepository;
 import com.shivam.employee.service.ExternalAPIService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +25,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -94,5 +101,20 @@ public class EmployeeServiceImplTest {
 
         EmployeeResponse employeeResponse = employeeService.create(employeeRequest);
         Assert.assertNotNull(employeeResponse);
+    }
+
+    @Test
+    public void testMethod() {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String jsonResponse = "[{\"name\" : \"shivam\",\"age\": \"21\",\"add\" : \"abc\"},{\"name\" : \"shivam2\",\"age\": \"221\",\"add\" : \"asdas\"}]";
+        try {
+            List<JSONObject> listEmployees = objectMapper.readValue(jsonResponse, new TypeReference<List<JSONObject>>(){});
+            JSONObject employee = listEmployees.get(0);
+            String name = employee.get("name").toString();
+            System.out.println(name);
+        } catch (JsonProcessingException | JSONException e) {
+            System.out.println(e);
+            //Add logger here
+        }
     }
 }
