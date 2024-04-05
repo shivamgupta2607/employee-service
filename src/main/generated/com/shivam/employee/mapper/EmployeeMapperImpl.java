@@ -8,12 +8,12 @@ import com.shivam.employee.entity.Employee;
 import com.shivam.employee.entity.Team;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-10T15:27:12+0800",
-    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_322 (Amazon.com Inc.)"
+    date = "2024-04-05T13:17:09+0800",
+    comments = "version: 1.4.1.Final, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 public class EmployeeMapperImpl implements EmployeeMapper {
 

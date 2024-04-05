@@ -37,17 +37,4 @@ public class ApplicationController {
         return new ResponseEntity<>("Welcome to Employee service. You can access swagger at--", HttpStatus.OK);
     }
 
-
-    @GetMapping("/testEnvSet")
-    public ResponseEntity<String> testEnv(@RequestParam(required = false) String pDate) {
-        log.info("Value before setting env:  {}", this.publishDate);
-        if (Objects.isNull(pDate)) {
-            publishDate = LocalDate.now().toString();
-        } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            publishDate = LocalDate.parse(pDate, formatter).toString();
-        }
-        log.info("Value after setting env:  {}", this.publishDate);
-        return ResponseEntity.ok(publishDate);
-    }
 }

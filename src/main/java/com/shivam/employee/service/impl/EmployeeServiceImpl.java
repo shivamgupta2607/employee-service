@@ -165,6 +165,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+
     private String getRandomString() {
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
@@ -174,5 +175,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    @Scheduled(fixedDelay = 10*60*60*1000)
+    public void scheduledMethod(){
+        log.info("Scheduled method triggered");
     }
 }

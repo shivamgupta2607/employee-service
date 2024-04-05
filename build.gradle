@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.shivam'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -19,23 +19,25 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:20.1.0'
-    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation "org.projectlombok:lombok:$lombokVersion"
+    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    implementation 'org.jetbrains:annotations:20.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation("org.springframework:spring-aspects:${springVersion}")
-    compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
     implementation "org.mockito:mockito-core:3.0.0"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
     implementation "org.springdoc:springdoc-openapi-ui:${springdocVersion}"
-    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+    implementation 'org.apache.poi:poi:5.2.0' // Update to the latest version
+    implementation 'org.apache.poi:poi-ooxml:5.2.0' // Update to the latest version
     testImplementation "junit:junit:${junitVersion}"
+
 }
 
 test {
